@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Arrays;
@@ -16,15 +15,14 @@ import java.util.Collection;
 
 @RunWith(value = Parameterized.class)
 public class TestOrderKursMaxLengthNameAndSurname {
-    private WebDriver driver;
+
     private OrderPage orderPage;
     private String textSurname;
     private String textName;
 
     @Before
     public void setUp() {
-        driver = new FirefoxDriver();
-        orderPage = new OrderPage(driver);
+        orderPage = new OrderPage(new FirefoxDriver());
     }
 
     @After

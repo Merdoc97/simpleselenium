@@ -1,22 +1,17 @@
 package mainPack;
 
 
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
-public class OrderPage {
-    private WebDriver driver;
-    private Logger log;
+public class OrderPage extends GeneralPageObject {
 
     @FindBy(name = "menu-11")
     private WebElement ddMenuKurs;
@@ -48,30 +43,8 @@ public class OrderPage {
     @FindBy(xpath = ".//*[contains(text(), 'Ваше сообщение было отправлено успешно')]")
     private WebElement messageSuccessSending;
 
-    @FindBy(xpath = "count(.//span[contains(text(),'заполните обязательные поля')])")
-    private WebElement qtyErrorMessages;
-
-    @FindBy(xpath = ".//span[contains(text(), 'заполните обязательные поля' )]")
-    private List<WebElement> quantityOfErrorMessages;
-
     public OrderPage(WebDriver driver) {
-        this.driver = driver;
-        log = Logger.getLogger(getClass());
-        PageFactory.initElements(driver, this);
-    }
-
-    public void openBrowserAndOpenPage() {
-
-        try {
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-            driver.get("http://old.qalight.com/zapisatsya-na-kurs/");
-            log.info("Browser and OrderPage were opened");
-
-        } catch (Exception e) {
-            log.error("Can`t work with Browser or OrderPage");
-            Assert.fail("Can`t work with Browser or OrderPage");
-        }
+        super(driver);
     }
 
     public void selectKursFromDropDown(String textKurs) {
@@ -139,8 +112,7 @@ public class OrderPage {
 
     public boolean isOrderPageLoad() {
         try {
-            boolean isElementPresent = inputSurname.isDisplayed();
-            return isElementPresent;
+            return inputSurname.isDisplayed();
         } catch (NoSuchElementException e) {
             log.info("No such element");
             return false;
@@ -149,8 +121,7 @@ public class OrderPage {
 
     public boolean isOrderSent() {
         try {
-            boolean isElementPresent = messageSuccessSending.isDisplayed();
-            return isElementPresent;
+            return messageSuccessSending.isDisplayed();
         } catch (NoSuchElementException e) {
             log.info("No such element");
             return false;

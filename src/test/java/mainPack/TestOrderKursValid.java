@@ -5,18 +5,16 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestOrderKursValid {
-    private WebDriver driver;
+
     private OrderPage orderPage;
 
 
     @Before
     public void setUp() {
-        driver = new FirefoxDriver();
-        orderPage = new OrderPage(driver);
+        orderPage = new OrderPage(new FirefoxDriver());
     }
 
 
