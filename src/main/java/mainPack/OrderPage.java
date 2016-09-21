@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -137,7 +138,6 @@ public class OrderPage {
     public boolean isOrderPageLoad() {
         try {
             boolean isElementPresent = inputSurname.isDisplayed();
-
             return isElementPresent;
         } catch (NoSuchElementException e) {
             log.info("No such element");
@@ -157,13 +157,12 @@ public class OrderPage {
 
     public int quantityOfErrorMessages() {
         try {
-            driver.findElements(By.xpath("count(.//span[contains(text(),'заполните обязательные поля')])"));
-            log.info("Quantity of errors is correct");
-            return 6;
-
+            List<WebElement> elementList = driver.findElements(By.xpath(".//span[contains(text(), 'заполните обязательные поля' )]"));
+            log.info("Quantity of errors is " + elementList.size());
+            return elementList.size();
         } catch (Exception e) {
             log.info("Not all errors");
+            return 0;
         }
-        return 0;
     }
 }

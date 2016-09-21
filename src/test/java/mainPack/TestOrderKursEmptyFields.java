@@ -20,7 +20,6 @@ public class TestOrderKursEmptyFields {
 
     @After
     public void tearDown() {
-
         orderPage.closeOrderPageAndBrowser();
     }
 
@@ -31,7 +30,7 @@ public class TestOrderKursEmptyFields {
         orderPage.inputTextIntoSurnameField("").inputTextIntoNameField("").inputTextIntoPhoneField("")
                 .inputTextIntoEmailField("").inputTextIntoSkypeField("").inputTextIntoCommentField("")
                 .clickButtonBuy();
-        orderPage.quantityOfErrorMessages();
+        Assert.assertEquals("checks how many errors on the page", 6, orderPage.quantityOfErrorMessages());
         //Todo маркер используется вместо простого маркера, тогда перед каждым коммитом будет видно что необходимо сделать.
         // нужен ассерт, чтобы тест падал, если кол-во ошибок меньше ожидаемого
     }
