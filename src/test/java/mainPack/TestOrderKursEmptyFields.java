@@ -8,13 +8,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestOrderKursEmptyFields {
-    WebDriver driver = new FirefoxDriver();
-    OrderPage orderPage = new OrderPage(driver);
+    private WebDriver driver;
+    private OrderPage orderPage;
 
 
     @Before
     public void setUp() {
+        driver = new FirefoxDriver();
+        orderPage = new OrderPage(driver);
+    }
 
+    @After
+    public void tearDown() {
+
+        orderPage.closeOrderPageAndBrowser();
     }
 
     @Test
@@ -25,14 +32,10 @@ public class TestOrderKursEmptyFields {
                 .inputTextIntoEmailField("").inputTextIntoSkypeField("").inputTextIntoCommentField("")
                 .clickButtonBuy();
         orderPage.quantityOfErrorMessages();
+        //Todo маркер используется вместо простого маркера, тогда перед каждым коммитом будет видно что необходимо сделать.
         // нужен ассерт, чтобы тест падал, если кол-во ошибок меньше ожидаемого
     }
 
-    @After
-    public void tearDown() {
-
-        orderPage.closeOrderPageAndBrowser();
-    }
 }
 
 

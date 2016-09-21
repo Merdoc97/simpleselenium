@@ -79,7 +79,7 @@
                 <version>2.18.1</version>
                 <configuration>
                     <includes>
-                        <include>**/*TestSelen.java</include>
+                        <include>**/Test**.java</include>
 
                         <!--<include>**/*Story.java</include>-->
                     </includes>

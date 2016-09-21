@@ -15,41 +15,41 @@ import java.util.concurrent.TimeUnit;
 
 
 public class OrderPage {
-    WebDriver driver;
-    Logger log;
+    private WebDriver driver;
+    private Logger log;
 
     @FindBy(name = "menu-11")
-    WebElement ddMenuKurs;
+    private WebElement ddMenuKurs;
 
     @FindBy(name = "your-name")
-    WebElement inputSurname;
+    private WebElement inputSurname;
 
     @FindBy(xpath = ".//*[@class='wpcf7-form-control-wrap text-68']/input")
-    WebElement inputName;
+    private WebElement inputName;
 
     @FindBy(xpath = ".//*[@class='wpcf7-form-control-wrap text-297']/input")
-    WebElement inputPhone;
+    private WebElement inputPhone;
 
     @FindBy(name = "your-email")
-    WebElement inputEmail;
+    private WebElement inputEmail;
 
     @FindBy(xpath = ".//*[@class='wpcf7-form-control-wrap text-71']/input")
-    WebElement inputSkype;
+    private WebElement inputSkype;
 
     @FindBy(id = "comment")
-    WebElement inputComment;
+    private WebElement inputComment;
 
     @FindBy(xpath = ".//*[@type='submit']")
-    WebElement buttonBuy;
+    private WebElement buttonBuy;
 
     @FindBy(xpath = ".//*[@value='Очистить']")
-    WebElement buttonClean;
+    private WebElement buttonClean;
 
     @FindBy(xpath = ".//*[contains(text(), 'Ваше сообщение было отправлено успешно')]")
-    WebElement messageSuccessSending;
+    private WebElement messageSuccessSending;
 
     @FindBy(xpath = "count(.//span[contains(text(),'заполните обязательные поля')])")
-    WebElement qtyErrorMessages;
+    private WebElement qtyErrorMessages;
 
     public OrderPage(WebDriver driver) {
         this.driver = driver;
@@ -163,6 +163,7 @@ public class OrderPage {
 
         } catch (Exception e) {
             log.info("Not all errors");
-        } return 0;
+        }
+        return 0;
     }
 }

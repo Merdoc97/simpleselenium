@@ -14,32 +14,37 @@ import java.util.Arrays;
 import java.util.Collection;
 
 
-    @RunWith(value = Parameterized.class)
-    public class TestOrderKursMaxLengthNameAndSurname {
-        WebDriver driver = new FirefoxDriver();
-        OrderPage orderPage = new OrderPage(driver);
-        String textSurname;
-        String textName;
-
-
-        public TestOrderKursMaxLengthNameAndSurname(String textSurname, String textName) {
-            this.textSurname = textSurname;
-            this.textName = textName;
-        }
-        @Parameterized.Parameters
-        public static Collection testData() {
-            return Arrays.asList(new Object[][]{
-                    {"Первыйтестфамилияяяя", "Первыйтестимяяяяяяяя"},
-                    {"Второйтестфамилияяяя", "ИмяТест"},
-                    {"фаМилия", "Третийтестимяяяяяяяя"}
-
-            });
-        }
-
+@RunWith(value = Parameterized.class)
+public class TestOrderKursMaxLengthNameAndSurname {
+    private WebDriver driver;
+    private OrderPage orderPage;
+    private String textSurname;
+    private String textName;
 
     @Before
     public void setUp() {
+        driver = new FirefoxDriver();
+        orderPage = new OrderPage(driver);
+    }
 
+    @After
+    public void tearDown() {
+        orderPage.closeOrderPageAndBrowser();
+    }
+
+    public TestOrderKursMaxLengthNameAndSurname(String textSurname, String textName) {
+        this.textSurname = textSurname;
+        this.textName = textName;
+    }
+
+    @Parameterized.Parameters
+    public static Collection testData() {
+        return Arrays.asList(new Object[][]{
+                {"Первыйтестфамилияяяя", "Первыйтестимяяяяяяяя"},
+                {"Второйтестфамилияяяя", "ИмяТест"},
+                {"фаМилия", "Третийтестимяяяяяяяя"}
+
+        });
     }
 
     @Test
@@ -53,10 +58,6 @@ import java.util.Collection;
         Assert.assertTrue("Order was not sent", orderPage.isOrderSent());
     }
 
-    @After
-    public void tearDown() {
-        orderPage.closeOrderPageAndBrowser();
-    }
 }
 
 

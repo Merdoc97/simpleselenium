@@ -9,13 +9,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestOrderKursValid {
-    WebDriver driver = new FirefoxDriver();
-    OrderPage orderPage = new OrderPage(driver);
+    private WebDriver driver;
+    private OrderPage orderPage;
 
 
     @Before
     public void setUp() {
+        driver = new FirefoxDriver();
+        orderPage = new OrderPage(driver);
+    }
 
+
+    @After
+    public void tearDown() {
+        orderPage.closeOrderPageAndBrowser();
     }
 
     @Test
@@ -29,10 +36,6 @@ public class TestOrderKursValid {
         Assert.assertTrue("Order was not sent", orderPage.isOrderSent());
     }
 
-    @After
-    public void tearDown() {
-        orderPage.closeOrderPageAndBrowser();
-    }
 }
 
 
