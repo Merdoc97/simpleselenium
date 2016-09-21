@@ -3,7 +3,6 @@ package mainPack;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -51,6 +50,9 @@ public class OrderPage {
 
     @FindBy(xpath = "count(.//span[contains(text(),'заполните обязательные поля')])")
     private WebElement qtyErrorMessages;
+
+    @FindBy(xpath = ".//span[contains(text(), 'заполните обязательные поля' )]")
+    private List<WebElement> quantityOfErrorMessages;
 
     public OrderPage(WebDriver driver) {
         this.driver = driver;
@@ -157,7 +159,7 @@ public class OrderPage {
 
     public int quantityOfErrorMessages() {
         try {
-            List<WebElement> elementList = driver.findElements(By.xpath(".//span[contains(text(), 'заполните обязательные поля' )]"));
+            List<WebElement> elementList = quantityOfErrorMessages;
             log.info("Quantity of errors is " + elementList.size());
             return elementList.size();
         } catch (Exception e) {
