@@ -11,13 +11,11 @@ public class TestOrderKursValid {
 
     private OrderPage orderPage;
 
-
     @Before
     public void setUp() {
         orderPage = new OrderPage(new FirefoxDriver());
         orderPage.openBrowserAndOpenPage();
     }
-
 
     @After
     public void tearDown() {
