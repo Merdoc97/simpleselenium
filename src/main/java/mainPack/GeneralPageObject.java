@@ -18,7 +18,8 @@ public abstract class GeneralPageObject {
     protected GeneralPageObject(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        log = Logger.getLogger(getClass());
+        log=Logger.getLogger(getClass());
+        log.info("---------------------------Test Begin---------------------------");
     }
 
     //default  values
