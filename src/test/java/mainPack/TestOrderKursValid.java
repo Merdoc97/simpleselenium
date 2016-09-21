@@ -15,6 +15,7 @@ public class TestOrderKursValid {
     @Before
     public void setUp() {
         orderPage = new OrderPage(new FirefoxDriver());
+        orderPage.openBrowserAndOpenPage();
     }
 
 
@@ -25,7 +26,6 @@ public class TestOrderKursValid {
 
     @Test
     public void testOrderKursValid() {
-        orderPage.openBrowserAndOpenPage();
         Assert.assertTrue("OrderPage was not Loaded", orderPage.isOrderPageLoad());
         orderPage.selectKursFromDropDown("PL/SQL");
         orderPage.inputTextIntoSurnameField("qa-test").inputTextIntoNameField("qa-test").inputTextIntoPhoneField("11111")

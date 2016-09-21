@@ -12,6 +12,8 @@ public class TestOrderKursEmptyFields {
     @Before
     public void setUp() {
         orderPage = new OrderPage(new FirefoxDriver());
+        //не относится к тесту
+        orderPage.openBrowserAndOpenPage();
     }
 
     @After
@@ -21,7 +23,6 @@ public class TestOrderKursEmptyFields {
 
     @Test
     public void testOrderKursValid() {
-        orderPage.openBrowserAndOpenPage();
         Assert.assertTrue("OrderPage was not Loaded", orderPage.isOrderPageLoad());
         orderPage.inputTextIntoSurnameField("").inputTextIntoNameField("").inputTextIntoPhoneField("")
                 .inputTextIntoEmailField("").inputTextIntoSkypeField("").inputTextIntoCommentField("")

@@ -23,6 +23,8 @@ public class TestOrderKursMaxLengthNameAndSurname {
     @Before
     public void setUp() {
         orderPage = new OrderPage(new FirefoxDriver());
+        //не относится к тесту
+        orderPage.openBrowserAndOpenPage();
     }
 
     @After
@@ -47,7 +49,6 @@ public class TestOrderKursMaxLengthNameAndSurname {
 
     @Test
     public void testOrderKursValid() {
-        orderPage.openBrowserAndOpenPage();
         Assert.assertTrue("OrderPage was not Loaded", orderPage.isOrderPageLoad());
         orderPage.selectKursFromDropDown("PL/SQL");
         orderPage.inputTextIntoSurnameField(textSurname).inputTextIntoNameField(textName).inputTextIntoPhoneField("11111")

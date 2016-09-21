@@ -21,6 +21,7 @@ public abstract class GeneralPageObject {
         log = Logger.getLogger(getClass());
     }
 
+    //default  values
     protected void openBrowserAndOpenPage() {
         try {
             driver.manage().window().maximize();
@@ -33,6 +34,7 @@ public abstract class GeneralPageObject {
             Assert.fail("Can`t work with Browser or OrderPage");
         }
     }
+
     //general web elements
     @FindBy(xpath = ".//span[contains(text(), 'заполните обязательные поля' )]")
     protected List<WebElement> quantityOfErrorMessages;
